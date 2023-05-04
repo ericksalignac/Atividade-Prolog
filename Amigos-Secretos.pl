@@ -5,7 +5,7 @@ camisa('amarela').
 camisa('azul').
 camisa('branca').
 camisa('verde').
-camisa('verde').
+camisa('vermelho').
 
 %Nomes
 nome('Arthur').
@@ -42,7 +42,7 @@ esporte('surf').
 esporte('nataÁ„o').
 esporte('vÙlei').
 
-%forÁando apenas um √∫nico resultado
+%forÁando apenas um ˙nico resultado
 alldifferent([]).
 alldifferent([H|T]):- not(member(H,T)),alldifferent(T).
 
@@ -97,10 +97,10 @@ esporte(Esporte_3),
 esporte(Esporte_4),
 esporte(Esporte_5),
 
-%Em uma das pontas est√° quem pratica Nata√ß√£o.
+%Em uma das pontas est· quem pratica nataÁ„o.
 (Esporte_1 == 'nataÁ„o'; Esporte_5 == 'nataÁ„o'),
 
-%O rapaz de Azul e o que gosta de surfar est√£o lado a lado.
+%O rapaz de Azul e o que gosta de surfar est„o lado a lado.
 (
 (Camisa_1 == 'azul', Esporte_2 == 'surf');
 (Camisa_2 == 'azul', (Esporte_1 == 'surf'; Esporte_3 == 'surf'));
@@ -109,7 +109,7 @@ esporte(Esporte_5),
 (Camisa_5 == 'azul', Esporte_4 == 'surf')
 ),
 
-%O rapaz de Amarelo est√° ao lado de quem pratica Surf.
+%O rapaz de Amarelo est· ao lado de quem pratica Surf.
 (
 (Camisa_1 == 'amarelo', Esporte_2 == 'surf');
 (Camisa_2 == 'amarelo', (Esporte_1 == 'surf'; Esporte_3 == 'surf'));
@@ -118,7 +118,7 @@ esporte(Esporte_5),
 (Camisa_5 == 'amarelo', Esporte_4 == 'surf')
 ),
 
-%O rapaz de Vermelho est√° em algum lugar √† esquerda do Arthur.
+%O rapaz de Vermelho est· em algum lugar ‡† esquerda do Arthur.
 (
 (Camisa_1 == 'vermelho', (Nome_2 == 'Arthur'; Nome_3 == 'Arthur'; Nome_4 == 'Arthur' ; Nome_5 == 'Arthur'));
 (Camisa_2 == 'vermelho', (Nome_3 == 'Arthur'; Nome_4 == 'Arthur'; Nome_5 == 'Arthur'));
@@ -126,7 +126,8 @@ esporte(Esporte_5),
 (Camisa_4 == 'vermelho', Nome_5 == 'Arthur')
 ),
 
-%O homem de Azul est√° em algum lugar √† esquerda de quem tirou o Wagner.
+% O homem de Azul est· em algum lugar ‡† esquerda de quem tirou o
+% Wagner.
 (
 (Camisa_1 == 'azul', (Nome_2 == 'Wagner'; Nome_3 == 'Wagner'; Nome_4 == 'Wagner' ; Nome_5 == 'Wagner'));
 (Camisa_2 == 'azul', (Nome_3 == 'Wagner'; Nome_4 == 'Wagner'; Nome_5 == 'Wagner'));
@@ -134,7 +135,7 @@ esporte(Esporte_5),
 (Camisa_4 == 'azul', Nome_5 == 'Wagner')
 ),
 
-%O homem de Branco dar√° uma Gravata de presente.
+%O homem de Branco dar· uma Gravata de presente.
 (
 (Camisa_1 == 'branco', Presente_1 == 'gravata');
 (Camisa_2 == 'branco', Presente_2 == 'gravata');
@@ -143,7 +144,8 @@ esporte(Esporte_5),
 (Camisa_5 == 'branco', Presente_5 == 'gravata')
 ),
 
-%Quem vai dar um DVD de presente est√° exatamente √† direita de quem est√° de Branco.
+% Quem vai dar um DVD de presente est· exatamente ‡† direita de quem
+% est· de Branco.
 (
 (Presente_2 == 'DVD', Camisa_1 == 'branco');
 (Presente_3 == 'DVD', Camisa_2 == 'branco');
@@ -151,7 +153,7 @@ esporte(Esporte_5),
 (Presente_5 == 'DVD', Camisa_4 == 'branco')
 ),
 
-%Quem gosta de Pintar tamb√©m gosta de Futebol.
+%Quem gosta de Pintar tambÈm gosta de Futebol.
 (
 (Hobby_1 == 'pintar', Esporte_1 == 'futebol');
 (Hobby_2 == 'pintar', Esporte_2 == 'futebol');
@@ -160,7 +162,7 @@ esporte(Esporte_5),
 (Hobby_5 == 'pintar', Esporte_5 == 'futebol')
 ),
 
-%Quem tirou o Alessandro est√° ao lado de quem pratica Surf.
+%Quem tirou o Alessandro est· ao lado de quem pratica Surf.
 (
 (Amigo_1 == 'Alessandro', Esporte_2 == 'surf');
 (Amigo_2 == 'Alessandro', (Esporte_1 == 'surf'; Esporte_3 == 'surf'));
@@ -178,10 +180,10 @@ esporte(Esporte_5),
 (Amigo_5 == 'Denis', Esporte_5 == 'squash')
 ),
 
-%Na quinta posi√ß√£o est√° que gosta de Cantar.
+%Na quinta posiÁ„o est· que gosta de Cantar.
 (Hobby_5 == 'cantar'),
 
-%O rapaz que gosta de Surf tamb√©m gosta de Desenhar.
+%O rapaz que gosta de Surf tambÈm gosta de Desenhar.
 (
 (Esporte_1 == 'surf', Hobby_1 == 'desenhar');
 (Esporte_2 == 'surf', Hobby_2 == 'desenhar');
@@ -190,7 +192,7 @@ esporte(Esporte_5),
 (Esporte_5 == 'surf', Hobby_5 == 'desenhar')
 ),
 
-%Quem gosta de Futebol est√° ao lado de quem gosta de Cantar.
+%Quem gosta de Futebol est· ao lado de quem gosta de Cantar.
 (
 (Esporte_1 == 'futebol', Hobby_2 == 'cantar');
 (Esporte_2 == 'futebol', (Hobby_1 == 'cantar'; Hobby_3 == 'cantar'));
@@ -199,7 +201,7 @@ esporte(Esporte_5),
 (Esporte_5 == 'futebol', Hobby_4 == 'cantar')
 ),
 
-%Mateus est√° exatamente √† direita de quem gosta de Ler.
+%Mateus est· exatamente ‡† direita de quem gosta de Ler.
 (
 (Nome_2 == 'Mateus', Hobby_1 == 'ler');
 (Nome_3 == 'Mateus', Hobby_2 == 'ler');
@@ -207,10 +209,10 @@ esporte(Esporte_5),
 (Nome_5 == 'Mateus', Hobby_4 == 'ler')
 ),
 
-%Quem tirou o Fabiano est√° em uma das pontas.
+%Quem tirou o Fabiano est· em uma das pontas.
 (Amigo_1 == 'Fabiano'; Amigo_5 == 'Fabiano'),
 
-%Quem tirou o Celso est√° ao lado de quem gosta de Desenhar.
+%Quem tirou o Celso est· ao lado de quem gosta de Desenhar.
 (
 (Amigo_1 == 'Celso', Hobby_2 == 'desenhar');
 (Amigo_2 == 'Celso', (Hobby_1 == 'desenhar'; Hobby_3 == 'desenhar'));
@@ -219,7 +221,8 @@ esporte(Esporte_5),
 (Amigo_5 == 'Celso', Hobby_4 == 'desenhar')
 ),
 
-%Quem tirou o Wagner est√° exatamente √† esquerda de quem tirou o Alessandro.
+% Quem tirou o Wagner est· exatamente ‡ esquerda de quem tirou o
+% Alessandro.
 (
 (Amigo_1 == 'Wagner', Amigo_2 == 'Alessandro');
 (Amigo_2 == 'Wagner', Amigo_3 == 'Alessandro');
@@ -227,7 +230,7 @@ esporte(Esporte_5),
 (Amigo_4 == 'Wagner', Amigo_5 == 'Alessandro')
 ),
 
-%Mateus est√° ao lado de quem pratica Squash.
+%Mateus est· ao lado de quem pratica Squash.
 (
 (Nome_1 == 'Mateus', Esporte_2 == 'squash');
 (Nome_2 == 'Mateus', (Esporte_1 == 'squash'; Esporte_3 == 'squash'));
@@ -236,10 +239,10 @@ esporte(Esporte_5),
 (Nome_5 == 'Mateus', Esporte_4 == 'squash')
 ),
 
-%Na quinta posi√ß√£o est√° quem vai dar um Livro de presente.
+%Na quinta posiÁ„o est· quem vai dar um Livro de presente.
 (Presente_5 == 'livro'),
 
-%Caio est√° ao lado de quem vai dar um Jaqueta de presente.
+%Caio est· ao lado de quem vai dar um Jaqueta de presente.
 (
 (Nome_1 == 'Caio', Presente_2 == 'jaqueta');
 (Nome_2 == 'Caio', (Presente_1 == 'jaqueta'; Presente_3 == 'jaqueta'));
@@ -248,13 +251,13 @@ esporte(Esporte_5),
 (Nome_5 == 'Caio', Presente_4 == 'jaqueta')
 ),
 
-%Arthur est√° em uma das pontas.
+%Arthur est· em uma das pontas.
 (Nome_1 == 'Arthur'; Nome_5 == 'Arthur'),
 
-%Rog√©rio est√° na terceira posi√ß√£o.
+%RogÈrio est· na terceira posi√ß√£o.
 (Nome_3 == 'RogÈrio'),
 
-%J√∫lio est√° exatamente √† direita de Rog√©rio.
+%J˙lio est· exatamente ‡† direita de RogÈrio.
 (
 (Nome_2 == 'J˙lio', Nome_1 == 'RogÈrio');
 (Nome_3 == 'J˙lio', Nome_2 == 'RogÈrio');
