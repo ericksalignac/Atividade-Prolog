@@ -5,7 +5,7 @@ camisa('amarela').
 camisa('azul').
 camisa('branca').
 camisa('verde').
-camisa('vermelho').
+camisa('vermelha').
 
 %Nomes
 nome('Arthur').
@@ -55,19 +55,28 @@ modelo([
         (Camisa_5, Nome_5, Presente_5, Amigo_5, Hobby_5, Esporte_5)
        ]) :-
 
-%Analisando as camisas:
-camisa(Camisa_1),
-camisa(Camisa_2),
-camisa(Camisa_3),
-camisa(Camisa_4),
-camisa(Camisa_5),
-
 %Analisando os nomes
 nome(Nome_1),
 nome(Nome_2),
 nome(Nome_3),
 nome(Nome_4),
 nome(Nome_5),
+
+%Arthur está em uma das pontas.
+(Nome_1 == 'Arthur'; Nome_5 == 'Arthur'),
+
+%Rogério está na terceira posiÃ§Ã£o.
+(Nome_3 == 'Rogério'),
+
+%Júlio está exatamente à  direita de Rogério.
+(
+(Nome_2 == 'Júlio', Nome_1 == 'Rogério');
+(Nome_3 == 'Júlio', Nome_2 == 'Rogério');
+(Nome_4 == 'Júlio', Nome_3 == 'Rogério');
+(Nome_5 == 'Júlio', Nome_4 == 'Rogério')
+),
+alldifferent([Nome_1, Nome_2, Nome_3, Nome_4, Nome_5]),
+
 
 %Analisando os presentes:
 presente(Presente_1),
@@ -76,6 +85,20 @@ presente(Presente_3),
 presente(Presente_4),
 presente(Presente_5),
 
+%Na quinta posição está quem vai dar um Livro de presente.
+(Presente_5 == 'livro'),
+
+%Caio está ao lado de quem vai dar um Jaqueta de presente.
+(
+(Nome_1 == 'Caio', Presente_2 == 'jaqueta');
+(Nome_2 == 'Caio', (Presente_1 == 'jaqueta'; Presente_3 == 'jaqueta'));
+(Nome_3 == 'Caio', (Presente_2 == 'jaqueta'; Presente_4 == 'jaqueta'));
+(Nome_4 == 'Caio', (Presente_3 == 'jaqueta'; Presente_5 == 'jaqueta'));
+(Nome_5 == 'Caio', Presente_4 == 'jaqueta')
+),
+
+
+
 %Analisando os hobbys:
 hobby(Hobby_1),
 hobby(Hobby_2),
@@ -83,12 +106,70 @@ hobby(Hobby_3),
 hobby(Hobby_4),
 hobby(Hobby_5),
 
+%Quem tirou o Celso está ao lado de quem gosta de Desenhar.
+(
+(Amigo_1 == 'Celso', Hobby_2 == 'desenhar');
+(Amigo_2 == 'Celso', (Hobby_1 == 'desenhar'; Hobby_3 == 'desenhar'));
+(Amigo_3 == 'Celso', (Hobby_2 == 'desenhar'; Hobby_4 == 'desenhar'));
+(Amigo_4 == 'Celso', (Hobby_3 == 'desenhar'; Hobby_5 == 'desenhar'));
+(Amigo_5 == 'Celso', Hobby_4 == 'desenhar')
+),
+
+%Na quinta posição está que gosta de Cantar.
+(Hobby_5 == 'cantar'),
+
+%Mateus está exatamente à  direita de quem gosta de Ler.
+(
+(Nome_2 == 'Mateus', Hobby_1 == 'ler');
+(Nome_3 == 'Mateus', Hobby_2 == 'ler');
+(Nome_4 == 'Mateus', Hobby_3 == 'ler');
+(Nome_5 == 'Mateus', Hobby_4 == 'ler')
+),
+
+alldifferent([Hobby_1, Hobby_2, Hobby_3, Hobby_4, Hobby_5]),
+
+
 %Analisando os amigos:
 amigo(Amigo_1),
 amigo(Amigo_2),
 amigo(Amigo_3),
 amigo(Amigo_4),
 amigo(Amigo_5),
+
+%Quem tirou o Fabiano está em uma das pontas.
+(Amigo_1 == 'Fabiano'; Amigo_5 == 'Fabiano'),
+
+% Quem tirou o Wagner está exatamente à esquerda de quem tirou o
+% Alessandro.
+(
+(Amigo_1 == 'Wagner', Amigo_2 == 'Alessandro');
+(Amigo_2 == 'Wagner', Amigo_3 == 'Alessandro');
+(Amigo_3 == 'Wagner', Amigo_4 == 'Alessandro');
+(Amigo_4 == 'Wagner', Amigo_5 == 'Alessandro')
+),
+
+
+alldifferent([Amigo_1, Amigo_2, Amigo_3, Amigo_4, Amigo_5]),
+
+%Analisando as camisas:
+camisa(Camisa_1),
+camisa(Camisa_2),
+camisa(Camisa_3),
+camisa(Camisa_4),
+camisa(Camisa_5),
+
+
+% O homem de Azul está em algum lugar à  esquerda de quem tirou o
+% Wagner.
+(
+(Camisa_1 == 'azul', (Nome_2 == 'Wagner'; Nome_3 == 'Wagner'; Nome_4 == 'Wagner' ; Nome_5 == 'Wagner'));
+(Camisa_2 == 'azul', (Nome_3 == 'Wagner'; Nome_4 == 'Wagner'; Nome_5 == 'Wagner'));
+(Camisa_3 == 'azul', (Nome_4 == 'Wagner');(Nome_5 == 'Wagner'));
+(Camisa_4 == 'azul', Nome_5 == 'Wagner')
+),
+
+alldifferent([Camisa_1, Camisa_2, Camisa_3, Camisa_4, Camisa_5]),
+
 
 %Analisando os esportes:
 esporte(Esporte_1),
@@ -111,46 +192,11 @@ esporte(Esporte_5),
 
 %O rapaz de Amarelo está ao lado de quem pratica Surf.
 (
-(Camisa_1 == 'amarelo', Esporte_2 == 'surf');
-(Camisa_2 == 'amarelo', (Esporte_1 == 'surf'; Esporte_3 == 'surf'));
-(Camisa_3 == 'amarelo', (Esporte_2 == 'surf'; Esporte_4 == 'surf'));
-(Camisa_4 == 'amarelo', (Esporte_3 == 'surf'; Esporte_5 == 'surf'));
-(Camisa_5 == 'amarelo', Esporte_4 == 'surf')
-),
-
-%O rapaz de Vermelho está em algum lugar à  esquerda do Arthur.
-(
-(Camisa_1 == 'vermelho', (Nome_2 == 'Arthur'; Nome_3 == 'Arthur'; Nome_4 == 'Arthur' ; Nome_5 == 'Arthur'));
-(Camisa_2 == 'vermelho', (Nome_3 == 'Arthur'; Nome_4 == 'Arthur'; Nome_5 == 'Arthur'));
-(Camisa_3 == 'vermelho', (Nome_4 == 'Arthur');(Nome_5 == 'Arthur'));
-(Camisa_4 == 'vermelho', Nome_5 == 'Arthur')
-),
-
-% O homem de Azul está em algum lugar à  esquerda de quem tirou o
-% Wagner.
-(
-(Camisa_1 == 'azul', (Nome_2 == 'Wagner'; Nome_3 == 'Wagner'; Nome_4 == 'Wagner' ; Nome_5 == 'Wagner'));
-(Camisa_2 == 'azul', (Nome_3 == 'Wagner'; Nome_4 == 'Wagner'; Nome_5 == 'Wagner'));
-(Camisa_3 == 'azul', (Nome_4 == 'Wagner');(Nome_5 == 'Wagner'));
-(Camisa_4 == 'azul', Nome_5 == 'Wagner')
-),
-
-%O homem de Branco dará uma Gravata de presente.
-(
-(Camisa_1 == 'branco', Presente_1 == 'gravata');
-(Camisa_2 == 'branco', Presente_2 == 'gravata');
-(Camisa_3 == 'branco', Presente_3 == 'gravata');
-(Camisa_4 == 'branco', Presente_4 == 'gravata');
-(Camisa_5 == 'branco', Presente_5 == 'gravata')
-),
-
-% Quem vai dar um DVD de presente está exatamente à  direita de quem
-% está de Branco.
-(
-(Presente_2 == 'DVD', Camisa_1 == 'branco');
-(Presente_3 == 'DVD', Camisa_2 == 'branco');
-(Presente_4 == 'DVD', Camisa_3 == 'branco');
-(Presente_5 == 'DVD', Camisa_4 == 'branco')
+(Camisa_1 == 'amarela', Esporte_2 == 'surf');
+(Camisa_2 == 'amarela', (Esporte_1 == 'surf'; Esporte_3 == 'surf'));
+(Camisa_3 == 'amarela', (Esporte_2 == 'surf'; Esporte_4 == 'surf'));
+(Camisa_4 == 'amarela', (Esporte_3 == 'surf'; Esporte_5 == 'surf'));
+(Camisa_5 == 'amarela', Esporte_4 == 'surf')
 ),
 
 %Quem gosta de Pintar também gosta de Futebol.
@@ -161,6 +207,35 @@ esporte(Esporte_5),
 (Hobby_4 == 'pintar', Esporte_4 == 'futebol');
 (Hobby_5 == 'pintar', Esporte_5 == 'futebol')
 ),
+
+%O rapaz de Vermelho está em algum lugar à  esquerda do Arthur.
+(
+(Camisa_1 == 'vermelha', (Nome_2 == 'Arthur'; Nome_3 == 'Arthur'; Nome_4 == 'Arthur' ; Nome_5 == 'Arthur'));
+(Camisa_2 == 'vermelha', (Nome_3 == 'Arthur'; Nome_4 == 'Arthur'; Nome_5 == 'Arthur'));
+(Camisa_3 == 'vermelha', (Nome_4 == 'Arthur');(Nome_5 == 'Arthur'));
+(Camisa_4 == 'vermelha', Nome_5 == 'Arthur')
+),
+
+
+%O homem de Branco dará uma Gravata de presente.
+(
+(Camisa_1 == 'branca', Presente_1 == 'gravata');
+(Camisa_2 == 'branca', Presente_2 == 'gravata');
+(Camisa_3 == 'branca', Presente_3 == 'gravata');
+(Camisa_4 == 'branca', Presente_4 == 'gravata');
+(Camisa_5 == 'branca', Presente_5 == 'gravata')
+),
+
+% Quem vai dar um DVD de presente está exatamente à  direita de quem
+% está de Branco.
+(
+(Presente_2 == 'DVD', Camisa_1 == 'branca');
+(Presente_3 == 'DVD', Camisa_2 == 'branca');
+(Presente_4 == 'DVD', Camisa_3 == 'branca');
+(Presente_5 == 'DVD', Camisa_4 == 'branca')
+),
+
+alldifferent([Presente_1, Presente_2, Presente_3, Presente_4, Presente_5]),
 
 %Quem tirou o Alessandro está ao lado de quem pratica Surf.
 (
@@ -180,9 +255,6 @@ esporte(Esporte_5),
 (Amigo_5 == 'Denis', Esporte_5 == 'squash')
 ),
 
-%Na quinta posição está que gosta de Cantar.
-(Hobby_5 == 'cantar'),
-
 %O rapaz que gosta de Surf também gosta de Desenhar.
 (
 (Esporte_1 == 'surf', Hobby_1 == 'desenhar');
@@ -201,35 +273,6 @@ esporte(Esporte_5),
 (Esporte_5 == 'futebol', Hobby_4 == 'cantar')
 ),
 
-%Mateus está exatamente à  direita de quem gosta de Ler.
-(
-(Nome_2 == 'Mateus', Hobby_1 == 'ler');
-(Nome_3 == 'Mateus', Hobby_2 == 'ler');
-(Nome_4 == 'Mateus', Hobby_3 == 'ler');
-(Nome_5 == 'Mateus', Hobby_4 == 'ler')
-),
-
-%Quem tirou o Fabiano está em uma das pontas.
-(Amigo_1 == 'Fabiano'; Amigo_5 == 'Fabiano'),
-
-%Quem tirou o Celso está ao lado de quem gosta de Desenhar.
-(
-(Amigo_1 == 'Celso', Hobby_2 == 'desenhar');
-(Amigo_2 == 'Celso', (Hobby_1 == 'desenhar'; Hobby_3 == 'desenhar'));
-(Amigo_3 == 'Celso', (Hobby_2 == 'desenhar'; Hobby_4 == 'desenhar'));
-(Amigo_4 == 'Celso', (Hobby_3 == 'desenhar'; Hobby_5 == 'desenhar'));
-(Amigo_5 == 'Celso', Hobby_4 == 'desenhar')
-),
-
-% Quem tirou o Wagner está exatamente à esquerda de quem tirou o
-% Alessandro.
-(
-(Amigo_1 == 'Wagner', Amigo_2 == 'Alessandro');
-(Amigo_2 == 'Wagner', Amigo_3 == 'Alessandro');
-(Amigo_3 == 'Wagner', Amigo_4 == 'Alessandro');
-(Amigo_4 == 'Wagner', Amigo_5 == 'Alessandro')
-),
-
 %Mateus está ao lado de quem pratica Squash.
 (
 (Nome_1 == 'Mateus', Esporte_2 == 'squash');
@@ -239,38 +282,8 @@ esporte(Esporte_5),
 (Nome_5 == 'Mateus', Esporte_4 == 'squash')
 ),
 
-%Na quinta posição está quem vai dar um Livro de presente.
-(Presente_5 == 'livro'),
-
-%Caio está ao lado de quem vai dar um Jaqueta de presente.
-(
-(Nome_1 == 'Caio', Presente_2 == 'jaqueta');
-(Nome_2 == 'Caio', (Presente_1 == 'jaqueta'; Presente_3 == 'jaqueta'));
-(Nome_3 == 'Caio', (Presente_2 == 'jaqueta'; Presente_4 == 'jaqueta'));
-(Nome_4 == 'Caio', (Presente_3 == 'jaqueta'; Presente_5 == 'jaqueta'));
-(Nome_5 == 'Caio', Presente_4 == 'jaqueta')
-),
-
-%Arthur está em uma das pontas.
-(Nome_1 == 'Arthur'; Nome_5 == 'Arthur'),
-
-%Rogério está na terceira posiÃ§Ã£o.
-(Nome_3 == 'Rogério'),
-
-%Júlio está exatamente à  direita de Rogério.
-(
-(Nome_2 == 'Júlio', Nome_1 == 'Rogério');
-(Nome_3 == 'Júlio', Nome_2 == 'Rogério');
-(Nome_4 == 'Júlio', Nome_3 == 'Rogério');
-(Nome_5 == 'Júlio', Nome_4 == 'Rogério')
-),
-
-alldifferent([Camisa_1, Camisa_2, Camisa_3, Camisa_4, Camisa_5]),
-alldifferent([Nome_1, Nome_2, Nome_3, Nome_4, Nome_5]),
-alldifferent([Amigo_1, Amigo_2, Amigo_3, Amigo_4, Amigo_5]),
-alldifferent([Presente_1, Presente_2, Presente_3, Presente_4, Presente_5]),
-alldifferent([Hobby_1, Hobby_2, Hobby_3, Hobby_4, Hobby_5]),
 alldifferent([Esporte_1, Esporte_2, Esporte_3, Esporte_4, Esporte_5]),
+
 
 nl,
 write('CHEGAMOS AO FIM DO MODELO')
