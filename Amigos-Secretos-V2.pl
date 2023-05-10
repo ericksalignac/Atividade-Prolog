@@ -42,11 +42,11 @@ esporte(surf).
 esporte(natacao).
 esporte(volei).
 
-%for�ando apenas um �nico resultado
+% Forçando apenas um único resultado
 alldifferent([]).
 alldifferent([H|T]):- not(member(H,T)),alldifferent(T).
 
-%Qual o modelo que a gente quer chegar?
+% Qual o modelo que a gente quer chegar?
 modelo([
         (Camisa_1, Nome_1, Presente_1, Amigo_1, Hobby_1, Esporte_1),
         (Camisa_2, Nome_2, Presente_2, Amigo_2, Hobby_2, Esporte_2),
@@ -73,13 +73,13 @@ nome(Nome_3),
 nome(Nome_4),
 nome(Nome_5),
 
-%Arthur está em uma das pontas.
+% Arthur está em uma das pontas.
 (Nome_1 == arthur; Nome_5 == arthur),
 
 %Rogério está na terceira posição.
 (Nome_3 == rogerio),
 
-%Júlio está exatamente a direita de Rogério.
+% Júlio está exatamente a direita de Rogério.
 (
 (Nome_2 == julio, Nome_1 == rogerio);
 (Nome_3 == julio, Nome_2 == rogerio);
@@ -87,16 +87,16 @@ nome(Nome_5),
 (Nome_5 == julio, Nome_4 == rogerio)
 ),
 
-alldifferent([Nome_1, Nome_2, Nome_3, Nome_4, Nome_5]),
 
-%O rapaz de Vermelho está em algum lugar á esquerda do Arthur.
+% O rapaz de Vermelho está em algum lugar á esquerda do Arthur.
 (
 (Camisa_1 == vermelha, (Nome_2 == arthur; Nome_3 == arthur; Nome_4 == arthur ; Nome_5 == arthur));
 (Camisa_2 == vermelha, (Nome_3 == arthur; Nome_4 == arthur; Nome_5 == arthur));
-(Camisa_3 == vermelha, (Nome_4 == arthur);(Nome_5 == arthur));
+(Camisa_3 == vermelha, (Nome_4 == arthur; Nome_5 == arthur));
 (Camisa_4 == vermelha, Nome_5 == arthur)
 ),
 
+alldifferent([Nome_1, Nome_2, Nome_3, Nome_4, Nome_5]),
 % Até aqui, apenas regras com (camisas + nomes) e nada mais
 
 %%%% Analisando os presentes:
@@ -106,10 +106,8 @@ presente(Presente_3),
 presente(Presente_4),
 presente(Presente_5),
 
-%Na quinta posição está quem vai dar um Livro de presente.
+% Na quinta posição está quem vai dar um Livro de presente.
 (Presente_5 == livro),
-
-alldifferent([Presente_1, Presente_2, Presente_3, Presente_4, Presente_5]),
 
 % Quem vai dar um DVD de presente está exatamente á direita de quem está de Branco.
 (
@@ -119,7 +117,7 @@ alldifferent([Presente_1, Presente_2, Presente_3, Presente_4, Presente_5]),
 (Presente_5 == dvd, Camisa_4 == branca)
 ),
 
-%O homem de Branco vai dar uma Gravata de presente.
+% O homem de Branco vai dar uma Gravata de presente.
 (
 (Camisa_1 == branca, Presente_1 == gravata);
 (Camisa_2 == branca, Presente_2 == gravata);
@@ -128,7 +126,7 @@ alldifferent([Presente_1, Presente_2, Presente_3, Presente_4, Presente_5]),
 (Camisa_5 == branca, Presente_5 == gravata)
 ),
 
-%Caio está ao lado de quem vai dar um Jaqueta de presente.
+% Caio está ao lado de quem vai dar um Jaqueta de presente.
 (
 (Nome_1 == caio, Presente_2 == jaqueta);
 (Nome_2 == caio, (Presente_1 == jaqueta; Presente_3 == jaqueta));
@@ -137,6 +135,7 @@ alldifferent([Presente_1, Presente_2, Presente_3, Presente_4, Presente_5]),
 (Nome_5 == caio, Presente_4 == jaqueta)
 ),
 
+alldifferent([Presente_1, Presente_2, Presente_3, Presente_4, Presente_5]),
 % Até aqui, apenas regras com (camisas + nomes + presentes) e nada mais
 
 %%%% Analisando os amigos:
@@ -146,7 +145,7 @@ amigo(Amigo_3),
 amigo(Amigo_4),
 amigo(Amigo_5),
 
-%Quem tirou o fabiano está em uma das pontas.
+% Quem tirou o fabiano está em uma das pontas.
 (Amigo_1 == fabiano; Amigo_5 == fabiano),
 
 % Quem tirou o wagner está exatamente à esquerda de quem tirou o alessandro
@@ -157,16 +156,16 @@ amigo(Amigo_5),
 (Amigo_4 == wagner, Amigo_5 == alessandro)
 ),
 
-alldifferent([Amigo_1, Amigo_2, Amigo_3, Amigo_4, Amigo_5]),
 
 % O homem de Azul está em algum lugar á esquerda de quem tirou o wagner
 (
 (Camisa_1 == azul, (Nome_2 == wagner; Nome_3 == wagner; Nome_4 == wagner ; Nome_5 == wagner));
 (Camisa_2 == azul, (Nome_3 == wagner; Nome_4 == wagner; Nome_5 == wagner));
-(Camisa_3 == azul, (Nome_4 == wagner);(Nome_5 == wagner));
+(Camisa_3 == azul, (Nome_4 == wagner; Nome_5 == wagner));
 (Camisa_4 == azul, Nome_5 == wagner)
 ),
 
+alldifferent([Amigo_1, Amigo_2, Amigo_3, Amigo_4, Amigo_5]),
 % Até aqui, apenas regras com (camisas + nomes + presentes + amigos) e nada mais
 
 %%%% Analisando os hobbies:
@@ -176,10 +175,8 @@ hobby(Hobby_3),
 hobby(Hobby_4),
 hobby(Hobby_5),
 
-%Na quinta posição está que gosta de Cantar
+% Na quinta posição está que gosta de Cantar
 (Hobby_5 == cantar),
-
-alldifferent([Hobby_1, Hobby_2, Hobby_3, Hobby_4, Hobby_5]),
 
 % Mateus está exatamente a direita de quem gosta de Ler
 (
@@ -189,7 +186,7 @@ alldifferent([Hobby_1, Hobby_2, Hobby_3, Hobby_4, Hobby_5]),
 (Nome_5 == mateus, Hobby_4 == ler)
 ),
 
-%Quem tirou o celso está ao lado de quem gosta de Desenhar
+% Quem tirou o celso está ao lado de quem gosta de Desenhar
 (
 (Amigo_1 == celso, Hobby_2 == desenhar);
 (Amigo_2 == celso, (Hobby_1 == desenhar; Hobby_3 == desenhar));
@@ -198,6 +195,7 @@ alldifferent([Hobby_1, Hobby_2, Hobby_3, Hobby_4, Hobby_5]),
 (Amigo_5 == celso, Hobby_4 == desenhar)
 ),
 
+alldifferent([Hobby_1, Hobby_2, Hobby_3, Hobby_4, Hobby_5]),
 % Até aqui, apenas regras com (camisas + nomes + presentes + amigos + hobbies) e nada mais
 
 %%%% Analisando os esportes:
@@ -207,12 +205,10 @@ esporte(Esporte_3),
 esporte(Esporte_4),
 esporte(Esporte_5),
 
-%Em uma das pontas está quem pratica natacao
+% Em uma das pontas está quem pratica natacao
 (Esporte_1 == natacao; Esporte_5 == natacao),
 
-alldifferent([Esporte_1, Esporte_2, Esporte_3, Esporte_4, Esporte_5]),
-
-%Quem tirou o alessandro está ao lado de quem pratica Surf.
+% Quem tirou o alessandro está ao lado de quem pratica Surf.
 (
 (Amigo_1 == alessandro, Esporte_2 == surf);
 (Amigo_2 == alessandro, (Esporte_1 == surf; Esporte_3 == surf));
@@ -221,7 +217,7 @@ alldifferent([Esporte_1, Esporte_2, Esporte_3, Esporte_4, Esporte_5]),
 (Amigo_5 == alessandro, Esporte_4 == surf)
 ),
 
-%O rapaz de Amarelo está ao lado de quem pratica Surf.
+% O rapaz de Amarelo está ao lado de quem pratica Surf.
 (
 (Camisa_1 == amarela, Esporte_2 == surf);
 (Camisa_2 == amarela, (Esporte_1 == surf; Esporte_3 == surf));
@@ -230,7 +226,7 @@ alldifferent([Esporte_1, Esporte_2, Esporte_3, Esporte_4, Esporte_5]),
 (Camisa_5 == amarela, Esporte_4 == surf)
 ),
 
-%O rapaz de Azul e o que gosta de surfar estão lado a lado.
+% O rapaz de Azul e o que gosta de surfar estão lado a lado.
 (
 (Camisa_1 == azul, Esporte_2 == surf);
 (Camisa_2 == azul, (Esporte_1 == surf; Esporte_3 == surf));
@@ -239,7 +235,7 @@ alldifferent([Esporte_1, Esporte_2, Esporte_3, Esporte_4, Esporte_5]),
 (Camisa_5 == azul, Esporte_4 == surf)
 ),
 
-%O rapaz que gosta de Surf também gosta de Desenhar
+% O rapaz que gosta de Surf também gosta de Desenhar
 (
 (Esporte_1 == surf, Hobby_1 == desenhar);
 (Esporte_2 == surf, Hobby_2 == desenhar);
@@ -248,7 +244,7 @@ alldifferent([Esporte_1, Esporte_2, Esporte_3, Esporte_4, Esporte_5]),
 (Esporte_5 == surf, Hobby_5 == desenhar)
 ),
 
-%Quem tirou o denis joga Squash.
+% Quem tirou o denis joga Squash.
 (
 (Amigo_1 == denis, Esporte_1 == squash);
 (Amigo_2 == denis, Esporte_2 == squash);
@@ -266,7 +262,7 @@ alldifferent([Esporte_1, Esporte_2, Esporte_3, Esporte_4, Esporte_5]),
 (Nome_5 == mateus, Esporte_4 == squash)
 ),
 
-%Quem gosta de Futebol está ao lado de quem gosta de Cantar
+% Quem gosta de Futebol está ao lado de quem gosta de Cantar
 (
 (Esporte_1 == futebol, Hobby_2 == cantar);
 (Esporte_2 == futebol, (Hobby_1 == cantar; Hobby_3 == cantar));
@@ -275,7 +271,7 @@ alldifferent([Esporte_1, Esporte_2, Esporte_3, Esporte_4, Esporte_5]),
 (Esporte_5 == futebol, Hobby_4 == cantar)
 ),
 
-%Quem gosta de Pintar também gosta de Futebol.
+% Quem gosta de Pintar também gosta de Futebol.
 (
 (Hobby_1 == pintar, Esporte_1 == futebol);
 (Hobby_2 == pintar, Esporte_2 == futebol);
@@ -284,7 +280,7 @@ alldifferent([Esporte_1, Esporte_2, Esporte_3, Esporte_4, Esporte_5]),
 (Hobby_5 == pintar, Esporte_5 == futebol)
 ),
 
-
+alldifferent([Esporte_1, Esporte_2, Esporte_3, Esporte_4, Esporte_5]),
 % Até aqui, apenas regras com (camisas + nomes + presentes + amigos + hobbies + esportes) 
 
 nl,
