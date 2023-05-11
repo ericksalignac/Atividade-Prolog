@@ -317,6 +317,9 @@ main :-
 
 main :-
     nl,
-    write('xxxx AQUI SOH PODE VIR UMA RESPOSTA ....'),
+    write('\n..... AQUI SOH PODE VIR UMA RESPOSTA ....\n'),
     nl,
-    write('........ UFA apos o fail .......').
+    write('...UFA!! Já tava quase desistindo KKKKKKKKKK ..........\n'),
+    write('\n'),
+    write('...Aluno: Erick Rocha Salignac Araujo .................\n'),
+    write('...Turma: Ciência de Dados e Machine Learning..........\n').
